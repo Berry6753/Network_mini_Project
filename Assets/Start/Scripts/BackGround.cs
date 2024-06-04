@@ -23,18 +23,16 @@ public class BackGround : MonoBehaviour
 
     private void BackgroundSpriteSetting()
     {
-        while (background != null)
+        background.sprite = backgroundSprites[spritesIndex];
+        time += Time.deltaTime;
+        if (time >= 10.0f)
         {
-            background.sprite = backgroundSprites[spritesIndex];
-            time += Time.deltaTime;
-            if (time >= 10.0f)
-            { 
-                spritesIndex++;
-            }
-            if (spritesIndex == backgroundSprites.Length)
-            { 
-                spritesIndex = 0;
-            }
+            spritesIndex++;
+            time = 0.0f;
+        }
+        if (spritesIndex == backgroundSprites.Length)
+        {
+            spritesIndex = 0;
         }
     }
 }
