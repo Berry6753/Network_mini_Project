@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,8 +15,12 @@ public class FeignRoomPlayer : NetworkRoomPlayer
         base.Start();
 
         if (isServer)
-        { 
+        {
             SpawnRoomPlayer();
+        }
+        else
+        { 
+            
         }
     }
 
@@ -46,8 +51,17 @@ public class FeignRoomPlayer : NetworkRoomPlayer
 
         var spawnPoint = FindObjectOfType<LobbySpawn>().GetSpawnPoint();
 
+
+
         var player = Instantiate(RoomManager.singleton.spawnPrefabs[0], spawnPoint, Quaternion.identity, GameObject.Find("GameRoom").transform).GetComponent<RoomPlayer>();
         NetworkServer.Spawn(player.gameObject, connectionToClient);
+        SetParentsGameRoom(isServer.);
         player.playerColor = color;
+    }
+
+    [ClientRpc]
+    private void SetParentsGameRoom(uint net)
+    {
+        NetworkClient.spawned[net].transform.SetParent(GameObject.Find("GameRoom").transform, false);
     }
 }
