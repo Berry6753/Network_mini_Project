@@ -189,7 +189,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2107138302
 GameObject:
@@ -275,13 +275,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4419067871922507567
+--- !u!1001 &6466922444355511003
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1414864602139329528, guid: 9b12017bdeb22bb43922b0ee0e130602, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414864602139329528, guid: 9b12017bdeb22bb43922b0ee0e130602, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414864602139329528, guid: 9b12017bdeb22bb43922b0ee0e130602, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3876654898543493484, guid: 9b12017bdeb22bb43922b0ee0e130602, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000018135914
+      objectReference: {fileID: 0}
     - target: {fileID: 4419067870135439344, guid: 9b12017bdeb22bb43922b0ee0e130602, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -292,7 +308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4419067870135439344, guid: 9b12017bdeb22bb43922b0ee0e130602, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4419067870135439344, guid: 9b12017bdeb22bb43922b0ee0e130602, type: 3}
       propertyPath: m_AnchorMax.x
@@ -366,17 +382,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4419067870135439345, guid: 9b12017bdeb22bb43922b0ee0e130602, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 2107138304}
     - target: {fileID: 4419067870135439348, guid: 9b12017bdeb22bb43922b0ee0e130602, type: 3}
       propertyPath: m_Name
       value: GameRoom
-      objectReference: {fileID: 0}
-    - target: {fileID: 8270089617607793715, guid: 9b12017bdeb22bb43922b0ee0e130602, type: 3}
-      propertyPath: m_HorizontalScrollbar
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b12017bdeb22bb43922b0ee0e130602, type: 3}
