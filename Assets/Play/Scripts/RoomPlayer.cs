@@ -4,7 +4,7 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
 
-public class RoomPlayer : NetworkRoomPlayer
+public class RoomPlayer : NetworkBehaviour
 {
     private Image playerInfoImg;
 
@@ -24,33 +24,5 @@ public class RoomPlayer : NetworkRoomPlayer
     {
         playerInfoImg = GetComponentInChildren<Image>();
         playerInfoImg.color = PlayerColor.GetColor(playerColor);
-    }
-
-    private void DefaultPlayerColor()
-    {
-        var roomslots = (NetworkManager.singleton as RoomManager).roomSlots;
-        EPlayerColor color = EPlayerColor.White;
-        for (int i = 0; i < (int)EPlayerColor.Lime + 1; i++)
-        { 
-            bool isFindSameColor = false;
-            foreach (var roomPlayer in roomslots) 
-            { 
-                var thisRoomPlayer = roomPlayer as RoomPlayer;
-                if (thisRoomPlayer.playerColor == (EPlayerColor)i && roomPlayer.netId != netId)
-                { 
-                    isFindSameColor = true;
-                    break;
-                }
-            }
-
-            if (!isFindSameColor)
-            {
-                color = (EPlayerColor)i;
-                break;
-            }
-        }
-        playerColor = color;
-
-        //Vector3 spawnPos = FindObjectOfType(S)
     }
 }
