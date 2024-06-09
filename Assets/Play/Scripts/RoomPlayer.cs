@@ -8,6 +8,22 @@ public class RoomPlayer : NetworkBehaviour
 {
     private Image playerInfoImg;
 
+    [SyncVar(hook = nameof(SetOwnerNetId_Hook))]
+    public uint ownerNetId;
+    public void SetOwnerNetId_Hook(uint _, uint newOwnerId)
+    {
+        var players = FindObjectsOfType<FeignRoomPlayer>();
+        foreach (var player in players)
+        {
+            if (newOwnerId == player.netId)
+            {
+                player.roomPlayer = this;
+                break;
+            }
+        }
+    }
+
+
     [SyncVar(hook = nameof(SetPlayerColor_Hook))]
     public EPlayerColor playerColor;
 
