@@ -55,7 +55,6 @@ public class FeignRoomPlayer : NetworkRoomPlayer
 
         var player = Instantiate(RoomManager.singleton.spawnPrefabs[0], spawnPoint, Quaternion.identity, GameObject.Find("GameRoom").transform).GetComponent<RoomPlayer>();
         NetworkServer.Spawn(player.gameObject, connectionToClient);
-        SetParentsGameRoom(isServer.);
         player.playerColor = color;
     }
 
