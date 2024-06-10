@@ -44,10 +44,12 @@ public class FeignRoomPlayer : NetworkRoomPlayer
         {
             SpawnRoomPlayer();
         }
-        else
-        { 
-            
-        }
+    }
+
+    private void OnDestroy()
+    {
+        if (LobbyUIManager.Instance != null)
+            LobbyUIManager.Instance.CustomizeUI.UpdateUnSelectColorButton(playerColor);
     }
 
     [Command]
@@ -88,8 +90,10 @@ public class FeignRoomPlayer : NetworkRoomPlayer
 
         var player = Instantiate(RoomManager.singleton.spawnPrefabs[0], spawnPoint, Quaternion.identity, GameObject.Find("GameRoom").transform).GetComponent<RoomPlayer>();
         NetworkServer.Spawn(player.gameObject, connectionToClient);
-        roomPlayer.ownerNetId = netId;
+        player.ownerNetId = netId;
         player.playerColor = color;
+
+        //roomPlayer = player;
     }
 
     //[ClientRpc]
