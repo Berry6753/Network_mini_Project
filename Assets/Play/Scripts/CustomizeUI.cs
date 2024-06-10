@@ -26,6 +26,12 @@ public class CustomizeUI : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        var inst = Instantiate(playerInfo);
+        playerInfo = inst;
+    }
+
     public void UpdateColorButton()
     {
         var roomSlots = (NetworkManager.singleton as RoomManager).roomSlots;
@@ -54,5 +60,15 @@ public class CustomizeUI : MonoBehaviour
             FeignRoomPlayer.MyRoomPlayer.CmdSetPlayerColor((EPlayerColor)index);
             UpdatePreviewColor((EPlayerColor)index);
         }
+    }
+
+    public void UpdateSelectColorButton(EPlayerColor color)
+    {
+        colorSelectButtons[(int)color].SetInteractable(false);
+    }
+
+    public void UpdateUnSelectColorButton(EPlayerColor color)
+    {
+        colorSelectButtons[(int)color].SetInteractable(true);
     }
 }
