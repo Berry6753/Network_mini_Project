@@ -31,7 +31,8 @@ public class FeignRoomPlayer : NetworkRoomPlayer
 
     public void SetPlayerColor_Hook(EPlayerColor oldColor, EPlayerColor newColor)
     {
-        LobbyUIManager.Instance.CustomizeUI.UpdateColorButton();
+        LobbyUIManager.Instance.CustomizeUI.UpdateUnSelectColorButton(oldColor);
+        LobbyUIManager.Instance.CustomizeUI.UpdateSelectColorButton(newColor);
     }
 
     public RoomPlayer roomPlayer;
@@ -62,7 +63,7 @@ public class FeignRoomPlayer : NetworkRoomPlayer
     private void SpawnRoomPlayer()
     {
         var roomslots = (NetworkManager.singleton as RoomManager).roomSlots;
-        EPlayerColor color = EPlayerColor.White;
+        EPlayerColor color = EPlayerColor.Red;
         for (int i = 0; i < (int)EPlayerColor.Lime + 1; i++)
         {
             bool isFindSameColor = false;
@@ -86,19 +87,25 @@ public class FeignRoomPlayer : NetworkRoomPlayer
 
         var spawnPoint = FindObjectOfType<LobbySpawn>().GetSpawnPoint();
 
+        var gameRoom = GameObject.Find("GameRoom");
 
-
-        var player = Instantiate(RoomManager.singleton.spawnPrefabs[0], spawnPoint, Quaternion.identity, GameObject.Find("GameRoom").transform).GetComponent<RoomPlayer>();
+        var player = Instantiate(RoomManager.singleton.spawnPrefabs[0], spawnPoint, Quaternion.identity, gameRoom.transform).GetComponent<RoomPlayer>();
         NetworkServer.Spawn(player.gameObject, connectionToClient);
         player.ownerNetId = netId;
         player.playerColor = color;
 
-        //roomPlayer = player;
+        RpcSetParentsGameRoom(player.netId, gameRoom.GetComponent<NetworkIdentity>().netId);
     }
 
-    //[ClientRpc]
-    //private void SetParentsGameRoom(uint net)
-    //{
-    //    NetworkClient.spawned[net].transform.SetParent(GameObject.Find("GameRoom").transform, false);
-    //}
+    [ClientRpc]
+    private void RpcSetParentsGameRoom(uint playerNetId, uint parentNetId)
+    {
+        var playerObj = NetworkClient.spawned[playerNetId].gameObject;
+        var parentObj = NetworkClient.spawned[parentNetId].gameObject;
+
+        if (playerObj != null && parentObj != null)
+        {
+            playerObj.transform.SetParent(parentObj.transform);
+        }
+    }
 }
