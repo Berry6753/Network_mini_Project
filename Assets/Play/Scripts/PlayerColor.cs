@@ -16,7 +16,7 @@ public class PlayerColor
         new Color(0.1f,0.1f,1f),        //Blue
         new Color(0f,0.6f,0f),          //Green
         new Color(1f,0.3f,0.6f),        //Pink
-        new Color(1f,0,4f, 0f),         //Orange
+        new Color(1f,0.4f, 0f),         //Orange
         new Color(1f,0.9f,0.1f),        //Yellow
         new Color(0.7f,0.7f,0.7f),      //Gray
         new Color(1f,1f,1f),            //White
